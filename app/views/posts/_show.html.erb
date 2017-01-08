@@ -1,0 +1,14 @@
+<div class="post-div box">
+  <p>
+    <h2><%= post.get_title %></h2>
+    by <%= post.user.email %>
+  </p>
+
+  <p>
+    <%= post.message %>
+  </p>
+
+  <% if can? :update, post %>
+    <%= link_to 'Edit', edit_post_path(post), class: 'edit-link' %>
+  <% end %>
+</div>

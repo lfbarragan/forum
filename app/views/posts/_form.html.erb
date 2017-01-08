@@ -10,11 +10,14 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_area :title %>
-  </div>
+  <% if @post.parent.blank? && params[:parent_id].blank? %>
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_area :title %>
+    </div>
+  <% elsif params[:parent_id].present? %>
+    <%= f.hidden_field :parent_id, value: params['parent_id'] %>
+  <% end %>
 
   <div class="field">
     <%= f.label :message %>

@@ -1,20 +1,23 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.parent_posts
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @post = Post.find(params[:id])
+    redirect_to post_path(@post.parent) if @post.parent
   end
 
   # GET /posts/new
   def new
     @post = Post.new
+    @parent = Post.find(params['parent_id']) if params['parent_id']
   end
 
   # GET /posts/1/edit
@@ -25,7 +28,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-
+    @post.user = current_user
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -69,6 +72,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :message).merge({user: current_user})
+      params.require(:post).permit(:title, :message, :parent_id)
     end
 end

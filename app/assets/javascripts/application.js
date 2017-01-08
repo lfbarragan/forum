@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//
+//Basic sticky header code
+$(window).scroll(function() {
+if ($(this).scrollTop() > 1){
+    $('header').addClass("sticky");
+  }
+  else{
+    $('header').removeClass("sticky");
+  }
+});

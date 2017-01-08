@@ -12,12 +12,14 @@
     <div>
       <header class="">
         <%= link_to 'Home', root_path %>
-        <% if current_user %>
-          <%= current_user.email %>
-          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-        <% else %>
-          <%= link_to 'Sign In', new_user_session_path %>
-        <% end %>
+        <div class="header-access-menu">
+          <% if current_user %>
+            <%= current_user.email %>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+          <% else %>
+            <%= link_to 'Sign In', new_user_session_path %>
+          <% end %>
+        </div>
       </header>
     </div>
     <div class="wrapper">

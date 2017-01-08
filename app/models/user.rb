@@ -6,4 +6,5 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   # Royce roles
   royce_roles %w[ user admin super ]
+  has_many :posts
 end

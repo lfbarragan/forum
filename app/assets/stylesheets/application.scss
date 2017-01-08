@@ -25,7 +25,15 @@ header{
   height: 108px;
   background: #335C7D;
   color: #fff;
+  a, a:visited{
+    color: white;
+  }
   font-family: 'PT Sans', sans-serif;
+  .header-access-menu{
+    position: absolute;
+    right: 10px;
+    top: 0;
+  }
 }
 header.sticky {
   transition: all 0.4s ease;
@@ -38,5 +46,6 @@ header.sticky {
 }
 
 .wrapper {
-    margin-top: 120px;
+    margin: 120px auto;
+    max-width: 500px;
 }

@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 header{
   transition: all 0.4s ease;
   position: fixed;
@@ -49,7 +52,7 @@ header.sticky {
 
 .wrapper {
     margin: 120px auto;
-    max-width: 500px;
+    max-width: 1024px;
 }
 .box {
   border: solid 1px;

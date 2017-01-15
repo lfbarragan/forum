@@ -22,6 +22,9 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    unless can? :update, @post
+      redirect_to root_path({errors: 'Not enough rights'})
+    end
   end
 
   # POST /posts

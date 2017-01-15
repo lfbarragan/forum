@@ -12,6 +12,9 @@
     <div>
       <header class="">
         <%= link_to 'Home', root_path %>
+        <% if current_user.try(:super?) %>
+          <%= link_to 'Admin', users_path %>
+        <% end %>
         <div class="header-access-menu">
           <% if current_user %>
             <%= current_user.email %>

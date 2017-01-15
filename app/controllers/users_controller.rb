@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :check_is_super?
 
   # GET /users
   # GET /users.json
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.user!
 
     respond_to do |format|
       if @user.save
@@ -62,6 +64,12 @@ class UsersController < ApplicationController
   end
 
   private
+
+    # Checking if the user has enough rights to edit users
+    def check_is_super?
+      redirect_to root_path({errors: 'Not enough rights'}) unless current_user.super?
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])

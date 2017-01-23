@@ -52,11 +52,18 @@ header.sticky {
 
 .wrapper {
     margin: 120px auto;
-    max-width: 1024px;
 }
 .box {
   border: solid 1px;
   border-radius: 16px;
   margin: 10px;
   padding: 10px;
+}
+
+.right-corner-button{
+  margin-top: -45px;
+}
+
+.main-list{
+  margin-top: 50px;
 }

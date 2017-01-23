@@ -2,16 +2,22 @@ class Post < ApplicationRecord
   # Relations
   belongs_to :user
   belongs_to :parent, class_name: 'Post'
-  has_many :posts, foreign_key: :parent_id
+  has_many :posts, foreign_key: :parent_id, dependent: :destroy
+
   # Scopes
   default_scope -> {order(created_at: 'ASC')}
   scope :parent_posts, -> { where(parent: nil)}
-  # functions
+
+  # Functions
   def get_title
-    if parent
-      "Re: #{parent.title}"
-    else
+    if is_parent?
       title
+    else
+      "Re: #{parent.title}"
     end
+  end
+
+  def is_parent?
+    parent.nil?
   end
 end

@@ -6,26 +6,27 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
     <div>
       <header class="">
-        <%= link_to 'Home', root_path %>
+        <%= link_to 'Home', root_path, class: 'btn btn-default btn-link' %>
         <% if current_user.try(:super?) %>
-          <%= link_to 'Admin', users_path %>
+          <%= link_to 'Admin', users_path, class: 'btn btn-default btn-link' %>
         <% end %>
         <div class="header-access-menu">
           <% if current_user %>
             <%= current_user.email %>
-            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+            <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'btn btn-default btn-danger') %>
           <% else %>
             <%= link_to 'Sign In', new_user_session_path %>
           <% end %>
         </div>
       </header>
     </div>
-    <div class="wrapper">
+    <div class="wrapper container">
       <%= yield %>
     </div>
   </body>

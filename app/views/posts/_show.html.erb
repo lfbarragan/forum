@@ -1,14 +1,17 @@
-<div class="post-div box">
+<div class="post-div box <%= post.is_parent? ? 'bg-primary' : background_color_class(index) %>">
+  <% if can? :update, post %>
+      <%= link_to edit_post_path(post), class: 'pull-right btn btn-default btn-success' do %>
+          <span class="glyphicons glyphicons-edit">Edit</span>
+      <% end %>
+  <% end %>
   <p>
     <h2><%= post.get_title %></h2>
-    by <%= post.user.email %>
   </p>
 
   <p>
     <%= post.message %>
   </p>
-
-  <% if can? :update, post %>
-    <%= link_to 'Edit', edit_post_path(post), class: 'edit-link' %>
-  <% end %>
+  <span>
+    by <%= post.user.email %>
+  </span>
 </div>

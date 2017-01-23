@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 <%= render 'show', post: @post %>
 
-<% @post.posts.each do |post| %>
-  <%= render 'show', post: post %>
+<% @post.posts.each_with_index  do |post, index| %>
+  <%= render 'show', post: post, index: index %>
 <% end %>
-<%= link_to 'Reply', new_post_path(parent_id: @post.id) %> |
-<%= link_to 'Back', posts_path %>
+<div style="padding: 0 10px;">
+  <%= link_to 'Reply', new_post_path(parent_id: @post.id), class: 'btn btn-default btn-info pull-left' %>
+  <%= link_to 'Back', posts_path, class: 'btn btn-default btn-warning pull-right' %>
+</div>
+

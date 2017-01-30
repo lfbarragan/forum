@@ -1,17 +1,18 @@
-<div class="post-div box <%= post.is_parent? ? 'bg-primary' : background_color_class(index) %>">
+<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet box <%= post.is_parent? ? 'bg-primary' : background_color_class(index) %>">
   <% if can? :update, post %>
-      <%= link_to edit_post_path(post), class: 'pull-right btn btn-default btn-success' do %>
+      <%= link_to edit_post_path(post), class: 'pull-right mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored' do %>
           <span class="glyphicons glyphicons-edit">Edit</span>
       <% end %>
   <% end %>
   <p>
-    <h2><%= post.get_title %></h2>
+    <h3><%= post.get_title %></h3>
   </p>
 
   <p>
     <%= post.message %>
   </p>
   <span>
-    by <%= post.user.email %>
+    Post by <%= post.user.email %>
+    at <%= post.created_at.strftime('%d/%m/%Y at %H:%M') %>
   </span>
 </div>

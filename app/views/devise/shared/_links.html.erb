@@ -1,7 +1,7 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name), class: 'btn btn-default btn-link' %>
+    <%= link_to "Log in", new_session_path(resource_name), class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect ' %>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name), class: 'btn btn-default btn-link' %>
+    <%= link_to "Sign up", new_registration_path(resource_name), class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect ' %>
 <% end -%>

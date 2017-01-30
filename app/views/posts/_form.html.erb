@@ -1,6 +1,6 @@
 <%= form_for(post) do |f| %>
   <% if post.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
       <ul>
@@ -11,20 +11,20 @@
     </div>
   <% end %>
   <% if @post.parent.blank? && params[:parent_id].blank? %>
-    <div class="field">
-      <%= f.label :title %>
-      <%= f.text_area :title %>
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-textfield mdl-js-textfield">
+      <%= f.label :title, class: 'mdl-textfield__label' %>
+      <%= f.text_area :title, class: 'mdl-textfield__input' %>
     </div>
   <% elsif params[:parent_id].present? %>
     <%= f.hidden_field :parent_id, value: params['parent_id'] %>
   <% end %>
 
-  <div class="field">
-    <%= f.label :message %>
-    <%= f.text_area :message %>
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-textfield mdl-js-textfield">
+    <%= f.label :message, class: 'mdl-textfield__label', for: 'message-field' %>
+    <%= f.text_area :message, class: 'mdl-textfield__input', rows: '5', id: 'message-field' %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+    <%= f.submit(class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary') %>
   </div>
 <% end %>

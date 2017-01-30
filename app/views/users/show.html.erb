@@ -1,9 +1,19 @@
-<p id="notice"><%= notice %></p>
+<div class="mdl-cell mdl-cell--12-col">
+  <h3>User</h3>
+</div>
 
-<p>
+<div class="mdl-cell mdl-cell--12-col">
   <strong>Email:</strong>
   <%= @user.email %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+</div>
+<div class="mdl-cell mdl-cell--12-col">
+  <strong>Username:</strong>
+  <%= @user.username %>
+</div>
+<div class="mdl-cell mdl-cell--12-col">
+  <% if current_user.try(:super?) %>
+      <%= link_to 'Back', users_path, class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' %>
+  <% else %>
+      <%= link_to 'Back', root_path, class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' %>
+  <% end %>
+</div>

@@ -1,40 +1,33 @@
-<div class="row">
-  <div class="col-md-2 col-md-offset-3">
-    <%= devise_error_messages! %>
-  </div>
-</div>
-<div class="devise-box box">
+<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
   <h2>Sign up</h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true %>
-    </div>
-
-    <div class="field">
-      <%= f.label :username %><br />
-      <%= f.text_field :username, autofocus: true %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Sign up" %>
-    </div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
+  <%= devise_error_messages! %>
 </div>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet') do |f| %>
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-textfield mdl-js-textfield">
+      <%= f.label :email, class: 'mdl-textfield__label' %>
+      <%= f.email_field :email, autofocus: true, class: 'mdl-textfield__input' %>
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-textfield mdl-js-textfield">
+      <%= f.label :username, class: 'mdl-textfield__label' %>
+      <%= f.text_field :username, class: 'mdl-textfield__input' %>
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-textfield mdl-js-textfield">
+      <%= f.label :password, class: 'mdl-textfield__label' %>
+      <%= f.password_field :password, autocomplete: "off", class: 'mdl-textfield__input' %>
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-textfield mdl-js-textfield">
+      <%= f.label :password_confirmation, class: 'mdl-textfield__label' %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'mdl-textfield__input' %>
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+      <%= f.submit 'Sign up', class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored' %>
+      <label>or you can </label>
+      <%= render 'devise/shared/links' %>
+    </div>
+
+<% end %>

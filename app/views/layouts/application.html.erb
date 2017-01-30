@@ -6,28 +6,57 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
-    <div>
-      <header class="">
-        <%= link_to 'Home', root_path, class: 'btn btn-default btn-link' %>
-        <% if current_user.try(:super?) %>
-          <%= link_to 'Admin', users_path, class: 'btn btn-default btn-link' %>
-        <% end %>
-        <div class="header-access-menu">
-          <% if current_user %>
-            <%= current_user.email %>
-            <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'btn btn-default btn-danger') %>
-          <% else %>
-            <%= link_to 'Sign In', new_user_session_path %>
-          <% end %>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Forum</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation. We hide it in small screens. -->
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <%= link_to 'Home', root_path, class: 'mdl-navigation__link header-links' %>
+            <% if current_user.try(:super?) %>
+                <%= link_to 'Admin', users_path, class: 'mdl-navigation__link header-links' %>
+            <% end %>
+            <div class="mdl-layout-spacer"></div>
+            <% if current_user %>
+                <%= link_to current_user.email, current_user, class: 'mdl-navigation__link header-links' %>
+                <div class="mdl-layout-spacer"></div>
+                <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent') %>
+            <% else %>
+                <%= link_to 'Sign In', new_user_session_path, class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored' %>
+            <% end %>
+          </nav>
         </div>
       </header>
-    </div>
-    <div class="wrapper container">
-      <%= yield %>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Forum</span>
+        <nav class="mdl-navigation">
+          <%= link_to 'Home', root_path, class: 'mdl-navigation__link' %>
+          <% if current_user.try(:super?) %>
+              <%= link_to 'Admin', users_path, class: 'mdl-navigation__link' %>
+          <% end %>
+          <% if current_user %>
+              <%= current_user.email %>
+              <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent') %>
+          <% else %>
+              <%= link_to 'Sign In', new_user_session_path, class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored' %>
+          <% end %>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="mdl-grid">
+          <%= yield %>
+        </div>
+      </main>
     </div>
   </body>
 </html>

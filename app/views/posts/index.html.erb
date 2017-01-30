@@ -1,27 +1,34 @@
-<p id="notice fade in"><%= notice || params[:errors] %></p>
+<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+  <p id="notice fade in"><%= notice || params[:errors] %></p>
 
-<h1>Posts</h1>
-<span class="right-corner-button pull-right">
-  <%= link_to 'New Post', new_post_path, class: 'btn btn-default btn-info' %>
-</span>
+  <h3>Posts</h3>
+  <span class="right-corner-button pull-right">
+    <%= link_to 'New Post', new_post_path, class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored' %>
+  </span>
+</div>
+
 <% @posts.each do |post| %>
-  <div class="row main-list">
-    <%= link_to post, class: 'text-primary' do %>
-      <div class="col-md-6">
-        <%= post.title.truncate(50) %>
-        <br>
-        Last reply: <%= post.posts.last.created_at.strftime('%d/%m/%Y at %H:%M') %>
-      </div>
-      <div class="col-md-5">
-        author: <%= post.user.email %>
-      </div>
-    <% end %>
-    <div class="col-md-1">
-      <% if can? :destroy, post %>
-          <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-danger' %>
+    <div class="mdl-cell mdl-cell--9-col mdl-cell--6-col-tablet">
+      <%= link_to post, class: 'text-primary' do %>
+          <div class="col-md-6">
+            <%= post.title.truncate(50) %>
+            <br>
+            Last reply: <%= post.last_reply_time.strftime('%d/%m/%Y at %H:%M') %>
+          </div>
+          <div class="col-md-5">
+            author: <%= post.user.email %>
+          </div>
       <% end %>
     </div>
-  </div>
+    <% if can? :destroy, post %>
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet">
+          <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'mdl-button mdl-js-button' do %>
+              <i class="material-icons accent-button-color">remove_circle_outline</i>
+          <% end %>
+        </div>
+    <% end %>
 <% end %>
+
+
 
 

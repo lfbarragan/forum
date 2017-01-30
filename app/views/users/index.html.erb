@@ -1,15 +1,26 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
-<div class="row">
-  <div class="col-md-3">Email</div>
+
+
+
+<div class="mdl-cell mdl-cell--12-col">
+  <h3>Users</h3>
+  <p id="notice"><%= notice %></p>
 </div>
-
-<% @users.each do |user| %>
-  <div class="row user-row">
-    <div class="col-md-3"><%= user.email %></div>
-    <div class="col-md-1"><%= link_to 'Show', user, class: 'btn btn-default btn-primary' %></div>
-    <div class="col-md-1"><%= link_to 'Edit', edit_user_path(user), class: 'btn btn-default btn-info' %></div>
-    <div class="col-md-1"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-danger' %></div>
-  </div>
-<% end %>
+<ul class="demo-list-icon mdl-list">
+  <li class="mdl-list__item">
+    Users
+  </li>
+  <% @users.each do |user| %>
+      <li class="mdl-list__item">
+        <span class="mdl-list__item-primary-content">
+          <%= link_to user, class: 'mdl-button mdl-js-button mdl-button--primary' do %>
+            <i class="material-icons mdl-list__item-icon">person</i>
+            <%= user.email %>
+          <% end %>
+        </span>
+        <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'mdl-list__item-secondary-action mdl-button mdl-js-button mdl-button--accent' do %>
+            <i class="material-icons">remove_circle_outline</i>
+        <% end %>
+      </li>
+  <% end %>
+</ul>

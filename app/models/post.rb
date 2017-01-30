@@ -20,4 +20,8 @@ class Post < ApplicationRecord
   def is_parent?
     parent.nil?
   end
+
+  def last_reply_time
+    posts.last.try(:created_at) || created_at
+  end
 end

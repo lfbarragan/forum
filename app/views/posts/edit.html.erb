@@ -1,6 +1,10 @@
-<h1>Editing Post</h1>
+<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+  <h3>Edit Post</h3>
+  <% if @post.is_parent? %>
+      <%= link_to 'Back', @post, class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent pull-right right-corner-button' %>
+  <% else %>
+      <%= link_to 'Back', @post.parent, class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent pull-right right-corner-button' %>
+  <% end %>
+</div>
 
 <%= render 'form', post: @post %>
-
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
